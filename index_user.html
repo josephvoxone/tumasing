@@ -21,6 +21,23 @@
 
 <body class="home">
     
+    <!-- Modal untuk alert verifikasi email -->
+    <div class="modal fade" id="myVerif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Verifikasi Email anda!</h4>
+            <p>Kurang sedikit lagi, untuk mengaktifkan akun ini anda perlu memasukan kode yang sudah dikirim oleh email pada saat pendaftaran.</p>
+            <hr>
+            <div class="form-group">
+                <label class="control-label">Kode Verifikasi</label>
+                <input type="text" class="form-control" id="email1" placeholder="BJGSA123" />
+            </div>
+            <button type="submit" class="btn btn-warning">Submit</button>
+            <button class="btn btn-danger">Kirim ulang</button>
+        </div>
+        </div>
+    </div>
+
     <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
         <!--header starts-->
         <header id="header" class="header-scroll top-header headrom">
@@ -52,10 +69,6 @@
                                     <a class="dropdown-item" href="#">Keluar</a>
                                 </div>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="registration.html">Masuk/Daftar
-                                </a>
-                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -514,6 +527,8 @@
     <!--/end:Site wrapper -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -522,6 +537,11 @@
     <script src="js/jquery.isotope.min.js"></script>
     <script src="js/headroom.js"></script>
     <script src="js/foodpicky.min.js"></script>
+    <script type="text/JavaScript">
+        $(document).ready(function(){
+            $('#myVerif').modal('show');
+        });
+    </script>
 </body>
 
 </html>
