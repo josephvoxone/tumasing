@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/tumasing_ico.png">
+    <title>Jadwal - Tumasing</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animsition.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet"> 
+
+   <!-- Date Picker  JavaScript -->
+   <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+   
+   <!-- End Date Picker  JavaScript -->
+  
+</head>
+<body>
+
+    <!-- Modal untuk alert alasan batal -->
+    <div class="modal fade" id="myBatal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+            <div class="alert alert-warning" role="alert">
+                <h4 class="alert-heading">Yakin Membatalkan Makanan ?</h4>
+                <p>Untuk membatalkan pesanan perlu alasan yang rasional sehingga dapat disetujui oleh staff Tumasing.</p>
+                <hr>
+                <div class="form-group">
+                <label for="sel1">Masalah</label>
+                <select class="form-control" id="sel1">
+                    <option>Batalkan</option>
+                    <option>Tidak Ditempat</option>
+                    <option>Sakit</option>
+                </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Alasan</label>
+                    <textarea class="form-control" rows="5" id="alasan"></textarea>
+                </div>
+                <button type="submit" class="btn btn-warning">Yakin</button>
+                <button data-dismiss="modal" class="btn btn-danger">Tidak</button>
+            </div>
+            </div>
+        </div>
+
+    <div class="site-wrapper animsition" data-animsition-in="fade-in" data-animsition-out="fade-out">
+        <!--header starts-->
+        <header id="header" class="header-scroll top-header headrom">
+            <!-- .navbar -->
+            <nav class="navbar navbar-dark">
+                <div class="container">
+                    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
+                    <a class="navbar-brand" href="index.html"> <img class="img-rounded" src="images/food-picky-logo.png" alt=""> </a>
+                    <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">Pilih Paket
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="map_results.html">Lokasi Outlet
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="food_results.html">Makanan
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="registration.html">Daftar
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- /.navbar -->
+        </header>
+        <div class="site-wrapper animsition">
+            <!-- start: Inner page hero -->
+            <div class="inner-page-hero bg-image space-md" data-image-src="images/gambar_bg3.jpg" style="background: url(&quot;images/gambar_bg.jpg&quot;) center center / cover no-repeat;">
+                <div class="container text-xs-center m-b-20 m-t-30">
+                   <h1 class="font-white">Makanan</h1>
+                   <p class="font-white">Tumasing tiap harinya memberikan varian makanan yang berbeda-beda</p>
+                </div>
+             </div>
+                <!-- end:Container -->
+            </div>
+            <div class="result-show">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <p><span class="primary-color"><strong>30</strong></span> daftar makanan untuk bulan ini </div>
+            </p>
+            <div class="col-sm-9">
+                <select class="custom-select pull-right">
+                    <option selected>Urutkan</option>
+                    <option value="1">Awal Bulan</option>
+                    <option value="2">Akhir Bulan</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //results show -->
+            <section class="restaurants-page">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                            <div class="sidebar clearfix m-b-20">
+                                <div class="main-block">
+                                    <div class="sidebar-title white-txt">
+                                        <h6>Tanggal</h6>
+                                        <i class="fa fa-cutlery pull-right"></i>
+                                    </div>
+                                    <div class="input-group">
+                                    <input type="text" name="daterange" class="form-control search-field">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary search-btn" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                    </div>
+                                    <div class="sidebar-title white-txt">
+                                        <h6>Pilih Kategori</h6>
+                                        <i class="fa fa-cutlery pull-right"></i>
+                                    </div>
+                                    <div class="input-group">
+                                    <input type="text" class="form-control search-field" placeholder="Cari nama makanan">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-secondary search-btn" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                    </div>
+                                    <form>
+                                        <ul>
+                                            <li>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Oseng-Oseng</span>
+                                            </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Tumis</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Sup Berkuah</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Goreng</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Olahan</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <!-- end:Sidebar nav -->
+                                <div class="widget-delivery">
+                                    <form>
+                                        <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="custom-control custom-radio">
+                                                <input id="radio1" name="radio" type="radio" class="custom-control-input" checked=""> <span class="custom-control-indicator"></span> <span class="custom-control-description">Semua</span> </label>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
+                                            <label class="custom-control custom-radio">
+                                                <input id="radio2" name="radio" type="radio" class="custom-control-input"> <span class="custom-control-indicator"></span> <span class="custom-control-description">Tersedia</span> </label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                        <div class="food-item-wrap">
+                                            <div class="figure-wrap bg-image" data-image-src="images/ayam_gado.jpg">
+                                                <div class="distance">
+                                                    <i class="fa fa-pin"></i>1 Oktober 2018</div>
+                                                <div class="rating pull-left">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="review pull-right">
+                                                    <a href="#">80 reviews</a>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <h5>
+                                                    <a href="profile.html">Ayam Bumbu Gado</a>
+                                                </h5>
+                                                <div class="product-name">Olahan bumbu gado-gado dengan nasi dan ayam</div>
+                                                <div class="price-btn-block">
+                                                    <span class="price">12:00 PM</span>
+                                                    <a href="#" class="btn theme-btn pull-right">Diambil</a>
+                                                </div>
+                                            </div>
+                                            <div class="restaurant-block">
+                                                <div class="left">
+                                                    <a class="pull-left" href="profile.html">
+                                                        <img src="images/logo2.png" alt="Restaurant logo" /> </a>
+                                                    <div class="pull-left right-text">
+                                                        <a href="#">Catering Saja</a>
+                                                        <span>Gubeng Jaya II</span>
+                                                    </div>
+                                                </div>
+                                                <div class="right-like-part pull-right">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span>48</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6  col-lg-4 food-item">
+                                        <div class="food-item-wrap">
+                                            <div class="figure-wrap bg-image" data-image-src="images/ayam_geprek.jpg">
+                                                <div class="distance">
+                                                    <i class="fa fa-pin"></i>2 Oktober 2018</div>
+                                                <div class="rating pull-left">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="review pull-right">
+                                                    <a href="#">58 reviews</a>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="content">
+                                                <h5>
+                                                    <a href="profile.html">Ayam Geprek Manis</a>
+                                                </h5>
+                                                <div class="product-name">Olahan bumbu dengan ayam geprek</div>
+                                                <div class="price-btn-block">
+                                                    <span class="price">06:00 PM</span>
+                                                    <a href="#" data-hover="Batal" class="btn theme-btn-dash jadwal-btn pull-right"><span>Tersedia</span></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="restaurant-block">
+                                                <div class="left">
+                                                    <a class="pull-left" href="profile.html">
+                                                        <img src="images/logo2.png" alt="Restaurant logo" /> </a>
+                                                    <div class="pull-left right-text">
+                                                        <a href="#">Pacar Jaya</a>
+                                                        <span>Pacar Keling IV 54</span>
+                                                    </div>
+                                                </div>
+                                                <div class="right-like-part pull-right">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span>48</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6  col-lg-4 food-item">
+                                    <div class="food-item-wrap">
+                                        <div class="figure-wrap bg-image" data-image-src="images/ayam_geprek.jpg">
+                                            <div class="distance">
+                                                <i class="fa fa-pin"></i>3 Oktober 2018</div>
+                                                <div class="rating pull-left">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="review pull-right">
+                                                <a href="#">58 reviews</a>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <h5>
+                                                <a href="profile.html">Ayam Geprek Keju</a>
+                                            </h5>
+                                            <div class="product-name">Olahan bumbu dengan ayam geprek</div>
+                                            <div class="price-btn-block">
+                                                <span class="price">08:00 AM</span>
+                                                <a href="#" data-hover="Batal" class="btn theme-btn-dash jadwal-btn pull-right"><span>Tersedia</span></span></a>
+                                            </div>
+                                        </div>
+                                        <div class="restaurant-block">
+                                            <div class="left">
+                                                <a class="pull-left" href="profile.html">
+                                                    <img src="images/logo2.png" alt="Restaurant logo" /> </a>
+                                                <div class="pull-left right-text">
+                                                    <a href="#">Pacar Jaya</a>
+                                                    <span>Pacar Keling IV 54</span>
+                                                </div>
+                                            </div>
+                                            <div class="right-like-part pull-right">
+                                                <i class="fa fa-heart-o"></i>
+                                                <span>48</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 food-item">
+                                        <div class="food-item-wrap">
+                                            <div class="figure-wrap bg-image" data-image-src="images/ayam_gado.jpg">
+                                                <div class="distance">
+                                                    <i class="fa fa-pin"></i>4 Oktober 2018</div>
+                                                    <div class="rating pull-left">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="review pull-right">
+                                                    <a href="#">80 reviews</a>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <h5>
+                                                    <a href="profile.html">Ayam Bumbu Gado</a>
+                                                </h5>
+                                                <div class="product-name">Olahan bumbu gado-gado dengan nasi dan ayam</div>
+                                                <div class="price-btn-block">
+                                                    <span class="price">12:00 PM</span>
+                                                    <a href="#" data-hover="Batal" class="btn theme-btn-dash jadwal-btn pull-right"><span>Tersedia</span></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="restaurant-block">
+                                                <div class="left">
+                                                    <a class="pull-left" href="profile.html">
+                                                        <img src="images/logo2.png" alt="Restaurant logo" /> </a>
+                                                    <div class="pull-left right-text">
+                                                        <a href="#">Catering Saja</a>
+                                                        <span>Gubeng Jaya II</span>
+                                                    </div>
+                                                </div>
+                                                <div class="right-like-part pull-right">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span>48</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6  col-lg-4 food-item">
+                                        <div class="food-item-wrap">
+                                            <div class="figure-wrap bg-image" data-image-src="images/ayam_geprek.jpg">
+                                                <div class="distance">
+                                                    <i class="fa fa-pin"></i>5 Oktober 2018</div>
+                                                <div class="rating pull-left">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <div class="review pull-right">
+                                                    <a href="#">58 reviews</a>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <h5>
+                                                    <a href="profile.html">Ayam Geprek Manis</a>
+                                                </h5>
+                                                <div class="product-name">Olahan bumbu dengan ayam geprek</div>
+                                                <div class="price-btn-block">
+                                                    <span class="price">06:00 PM</span>
+                                                    <a href="#" data-hover="Batal" class="btn theme-btn-dash jadwal-btn pull-right"><span>Tersedia</span></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="restaurant-block">
+                                                <div class="left">
+                                                    <a class="pull-left" href="profile.html">
+                                                        <img src="images/logo2.png" alt="Restaurant logo" /> </a>
+                                                    <div class="pull-left right-text">
+                                                        <a href="#">Pacar Jaya</a>
+                                                        <span>Pacar Keling IV 54</span>
+                                                    </div>
+                                                </div>
+                                                <div class="right-like-part pull-right">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span>48</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6  col-lg-4 food-item">
+                                    <div class="food-item-wrap">
+                                        <div class="figure-wrap bg-image" data-image-src="images/ayam_geprek.jpg">
+                                            <div class="distance">
+                                                <i class="fa fa-pin"></i>6 Oktober 2018</div>
+                                                <div class="rating pull-left">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="review pull-right">
+                                                <a href="#">58 reviews</a>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <h5>
+                                                <a href="profile.html">Ayam Geprek Keju</a>
+                                            </h5>
+                                            <div class="product-name">Olahan bumbu dengan ayam geprek</div>
+                                            <div class="price-btn-block">
+                                                <span class="price">08:00 AM</span>
+                                                <a href="#" data-hover="Batal" class="btn theme-btn-dash jadwal-btn pull-right"><span>Tersedia</span></span></a>
+                                            </div>
+                                        </div>
+                                        <div class="restaurant-block">
+                                            <div class="left">
+                                                <a class="pull-left" href="profile.html">
+                                                    <img src="images/logo2.png" alt="Restaurant logo" /> </a>
+                                                <div class="pull-left right-text">
+                                                    <a href="#">Pacar Jaya</a>
+                                                    <span>Pacar Keling IV 54</span>
+                                                </div>
+                                            </div>
+                                            <div class="right-like-part pull-right">
+                                                <i class="fa fa-heart-o"></i>
+                                                <span>48</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1" aria-label="Previous"> <span aria-hidden="true">«</span> <span class="sr-only">Previous</span> </a>
+                                            </li>
+                                            <li class="page-item active"> <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a> </li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">»</span> <span class="sr-only">Next</span> </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- end:right row -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <!-- start: FOOTER -->
+        <footer class="footer">
+            <div class="container">
+                <!-- top footer statrs -->
+                <div class="row top-footer">
+                    <div class="col-xs-12 col-sm-3 footer-logo-block color-gray">
+                        <a href="#"> <img src="images/food-picky-logo.png" alt="Footer logo"> </a> 
+                        <span>Sebuah platform untuk memudahkan anda dalam mengelola keuangan makan anda, 
+                            tentunya anda dapat memilih makanan anda dengan jadwal yang sudah diatur.                            
+                        </span> </div>
+                    <div class="col-xs-12 col-sm-2 about color-gray">
+                        <h5>Tentang Kami</h5>
+                        <ul>
+                            <li><a href="#">About us</a> </li>
+                            <li><a href="#">History</a> </li>
+                            <li><a href="#">Our Team</a> </li>
+                            <li><a href="#">We are hiring</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 popular-locations color-gray">
+                        <h5>Outlet Makanan Terbaik</h5>
+                        <ul>
+                            <li><a href="#">Sahabat Jaya</a> </li>
+                            <li><a href="#">Rozo Catering</a> </li>
+                            <li><a href="#">Latulip</a> </li>
+                            <li><a href="#">Sibenik</a> </li>
+                            <li><a href="#">Zagreb</a> </li>
+                            <li><a href="#">Pengen Mangan</a> </li>
+                            <li><a href="#">Beograd</a> </li>
+                            <li><a href="#">Jirolu Group</a> </li>
+                            <li><a href="#">Gradacac</a> </li>
+                            <li><a href="#">Luwe</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 address color-gray">
+                            <h5>Informasi Lain-Lain</h5>
+                            <p>Anda dapat mengajukan pertanyaan atau permasalahan seputar pengantaran makanan atau manajemen keuangan di akun anda.</p>
+                            <h5>Contact Support: <a href="tel:+080000012222">080 000012 222</a></h5> </div>
+                </div>
+                <!-- top footer ends -->
+            </div>
+        </footer>
+            <!-- end:Footer -->
+        </div>
+    </div>
+
+    <!-- end:page wrapper -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/animsition.min.js"></script>
+    <script src="js/bootstrap-slider.min.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/headroom.js"></script>
+    <script src="js/foodpicky.min.js"></script>
+    <script type="text/JavaScript">
+        $('.jadwal-btn').click(function(){
+            $('#myBatal').modal('show');
+        });
+                    
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+            opens: 'left'
+            }, function(start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        });
+    </script>
+</body>
+</html>

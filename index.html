@@ -46,7 +46,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-sm">
-                                                        <button type="submit" class="btn theme-btn">Masuk</button>
+                                                        <button type="submit" id="masuk" class="btn theme-btn">Masuk</button>
                                                         <a href="registration.html" target="_blank">Belum Terdaftar ?</a>
                                                     </div>
                                                 </div>
@@ -554,7 +554,10 @@
     <script src="js/headroom.js"></script>
     <script src="js/foodpicky.min.js"></script>
     <script type="text/JavaScript">
-        $('#myModal').modal('show');
+         $('#masuk').click(function(){
+            $('#myModal').modal('show');
+        });
+
     </script>
 </body>
 
