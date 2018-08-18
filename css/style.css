@@ -2344,6 +2344,23 @@ a[aria-expanded=false] .fa-angle-down {
     font-size: 13px;
 }
 
+.theme_badge {
+    display: block;
+    line-height: 25px;
+    color: #fff;
+    text-align: center;
+    left: 10px;
+    top: 10px;
+    z-index: 9999;
+    background: #f30;
+    display: inline-block;
+    padding: 0px 10px;
+    margin-top: 5px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: 13px;
+}
+
 .wwone__map-infobox__inner {
     background: #fff;
     width: 220px;
