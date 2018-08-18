@@ -65,6 +65,7 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="jadwal.html">Jadwal Makan</a>
                                     <a class="dropdown-item" href="saldo.html">Saldo</a>
+                                    <a class="dropdown-item" id="verifikasi"><span class="btn theme_badge">Verifikasi</span></a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Keluar</a>
                                 </div>
@@ -539,6 +540,9 @@
     <script src="js/foodpicky.min.js"></script>
     <script type="text/JavaScript">
         $(document).ready(function(){
+            $('#myVerif').modal('show');
+        });
+        $('#verifikasi').click(function(){
             $('#myVerif').modal('show');
         });
     </script>
